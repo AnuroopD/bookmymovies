@@ -11,13 +11,35 @@
       <mat-tab label="Now Showing">
         <ng-template matTabContent class="movieList">
 
-          <div class="cards-container" fxLayout="row wrap" fxLayoutAlign="space-evenly center" fxLayoutGap="2%">
+          <!-- <div class="cards-container" fxLayout="row wrap" fxLayoutAlign="space-evenly center" fxLayoutGap="2%">
             <ng-container *ngFor="let movie of upcomingList; trackBy: track">
               <app-movie-card class=" seach-movies-cards" [movie]="movie" [theaterList]="theaterList"
                 [category]="'nowPlaying'">
               </app-movie-card>
             </ng-container>
-          </div>
+          </div> -->
+          <!-- <cdk-virtual-scroll-script itemSize="560">
+            <div class="cards-container">
+              <ng-container *ngFor="let movie of upcomingList; trackBy: track">
+                <app-movie-card class=" seach-movies-cards" [movie]="movie" [theaterList]="theaterList"
+                  [category]="'nowPlaying'">
+                </app-movie-card>
+              </ng-container>
+            </div>
+          </cdk-virtual-scroll-script> -->
+
+          <cdk-virtual-scroll-viewport itemSize="560" class="virtualScrollContainer">
+                        <div class="movie-container"fxLayout="row wrap" fxLayoutAlign="space-evenly center"
+              fxLayoutGap="2%">
+                            <ng-container *cdkVirtualFor="let movie of upcomingList">
+                                <app-movie-card class="seach-movies-cards" [movie]="movie" [theaterList]="theaterList"
+                                    [category]="'nowPlaying'">
+                                  </app-movie-card>
+                              </ng-container>
+                          </div>
+
+                      </cdk-virtual-scroll-viewport>
+
 
         </ng-template>
       </mat-tab>

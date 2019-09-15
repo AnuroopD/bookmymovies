@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/",
+    "public": "dist/book-my-movie",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [
       {

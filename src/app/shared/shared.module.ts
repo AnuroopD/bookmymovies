@@ -53,7 +53,8 @@ import { PreBookingComponent } from './components/modals/pre-booking/pre-booking
     MaterialModule,
     FlexLayoutModule,
     ReactiveFormsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    FormsModule
   ],
   providers: [{ provide: MatDialogRef, useValue: {} }, { provide: MAT_DIALOG_DATA, useValue: [] }],
   entryComponents: [ConfirmationModalComponent],

@@ -39,8 +39,7 @@ import { AdminModule } from './features/admin/admin.module';
     MaterialModule,
     CoreModule,
     AdminModule,
-    SharedModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
