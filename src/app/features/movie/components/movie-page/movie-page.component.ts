@@ -1,9 +1,9 @@
-import { Component, OnInit, Inject, Input, OnChanges } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Component, OnInit, Inject, Input, OnChanges, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { StoreFeatureModule } from '@ngrx/store';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 
- 
- import { MovieService } from '../../services/movie.service';
+import { MovieService } from '../../services/movie.service';
 import { FormControl } from '@angular/forms';
 import { Store, State } from '@ngrx/store';
 import * as MovieState from '../../../../reducers/index';
@@ -14,9 +14,10 @@ import { SeatReservationModalComponent } from 'src/app/shared/components/modals/
 @Component({
   selector: 'app-movie-page',
   templateUrl: './movie-page.component.html',
-  styleUrls: ['./movie-page.component.scss']
+  styleUrls: ['./movie-page.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MoviePageComponent implements OnInit, OnChanges {
+export class MoviePageComponent implements OnInit, OnChanges, OnDestroy {
   imagesPath = TMDB_URLS.IMAGE_URL;
   castCrew = TMDB_URLS.CAST_CREW_BIG;
   @Input() movieDescription;
@@ -30,6 +31,7 @@ export class MoviePageComponent implements OnInit, OnChanges {
   dialogResult;
   rating = new Array(5);
   selectedTime;
+  selectTheaterSubs: Subscription;
   constructor(public dialog: MatDialog) {
     for (let i = 0; i <= 4; i++) {
       this.rating[i] = i <= 3 ? true : false;
@@ -44,7 +46,7 @@ export class MoviePageComponent implements OnInit, OnChanges {
     this.selectTheater = new FormControl();
     this.selectTheater.setValue(this.theaterList[0]);
     this.selectedTheater = this.theaterList[0];
-    this.selectTheater.valueChanges.subscribe(selectedTheater => {
+    this.selectTheaterSubs = this.selectTheater.valueChanges.subscribe(selectedTheater => {
       this.selectedTheater = selectedTheater;
     });
     this.date.valueChanges.subscribe((value: Date) => {
@@ -91,6 +93,12 @@ export class MoviePageComponent implements OnInit, OnChanges {
       return cast.id;
     } else {
       return -1;
+    }
+  }
+
+  ngOnDestroy() {
+    if (this.selectTheaterSubs && !this.selectTheaterSubs.closed) {
+      this.selectTheaterSubs.unsubscribe();
     }
   }
 }

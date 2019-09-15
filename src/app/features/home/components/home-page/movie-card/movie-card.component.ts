@@ -1,17 +1,18 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { MatDialog } from '@angular/material';
 // tslint:disable-next-line:max-line-length
- 
- import { FormControl } from '@angular/forms';
+
+import { FormControl } from '@angular/forms';
 import { BASE_URL, TMDB_URLS } from '../../../../../shared/config';
 import { Movie } from '../../../../search/models/search.model';
- import { SeatReservationModalComponent } from 'src/app/shared/components/modals/seat-reservation-modal/seat-reservation-modal.component';
+import { SeatReservationModalComponent } from 'src/app/shared/components/modals/seat-reservation-modal/seat-reservation-modal.component';
 import { PreBookingComponent } from 'src/app/shared/components/modals/pre-booking/pre-booking.component';
-  
+
 @Component({
   selector: 'app-movie-card',
   templateUrl: './movie-card.component.html',
-  styleUrls: ['./movie-card.component.scss']
+  styleUrls: ['./movie-card.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MovieCardComponent implements OnInit, OnChanges {
   @Input()
@@ -23,7 +24,6 @@ export class MovieCardComponent implements OnInit, OnChanges {
 
   imagesPath = TMDB_URLS.IMAGE_URL;
   castCrewPath = TMDB_URLS.CAST_CREW_SMALL;
-  movieName = 'Robot 2.O';
   dialogResult;
   rating = 4.7;
   totalReviews = 51;
@@ -78,10 +78,6 @@ export class MovieCardComponent implements OnInit, OnChanges {
     bookingInstance.screen = this.selectedTheater && this.selectedTheater.name;
     bookingInstance.time = this.selectedTime;
     bookingInstance.movieList = this.movie;
-    dialogRef.afterClosed().subscribe(result => {
-      // console.log(`Dialog closed: ${result}`);
-      //  this.dialogResult = result;
-    });
   }
 
   trackCastandCrew(index, cast) {

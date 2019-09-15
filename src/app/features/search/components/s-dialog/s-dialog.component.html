@@ -12,7 +12,7 @@
   <div class="dialog-dropdown" fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="1%">
     <mat-form-field>
       <select [(ngModel)]="selectedLanguage" matNativeControl placeholder="Language">
-        <option *ngFor='let language of movieObjArray  ; trackBy: track' value="{{language.code}}"> {{language.key}}
+        <option *ngFor='let language of movieObjArray ; trackBy: track' value="{{language.code}}"> {{language.key}}
         </option>
 
       </select>
@@ -21,7 +21,7 @@
     <mat-form-field>
       <select matNativeControl placeholder="Genre" #genreId [(ngModel)]="selectedGenre"
         (ngModelChange)="changeGenere()">
-        <option *ngFor="let genre of genresList  ; trackBy: track" value="{{genre.id}}">{{genre.name}}</option>
+        <option *ngFor="let genre of genresList ; trackBy: track" value="{{genre.id}}">{{genre.name}}</option>
       </select>
     </mat-form-field>
 

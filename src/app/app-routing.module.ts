@@ -13,7 +13,7 @@ const routes: Routes = [
   },
   { path: 'movie', loadChildren: './features/movie/movie.module#MovieModule' },
   { path: 'search', loadChildren: './features/search/search.module#SearchModule' },
-  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+  // { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'admin', loadChildren: './features/admin/admin.module#AdminModule' },
   {
     path: 'payment/:movieTitle/:theatre/:time/:seat/:total',

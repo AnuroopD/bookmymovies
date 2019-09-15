@@ -9,7 +9,7 @@
       </app-movie-description>
       <h3>Social</h3>
       <div fxLayout="row" class="rating">
-        <div *ngFor="let star of rating trackCastandCrew ;trackBy:trackCastandCrew">
+        <div *ngFor="let star of rating  ; trackBy:trackCastandCrew">
           <mat-icon *ngIf="star">star_rate</mat-icon>
           <mat-icon *ngIf="!star">star_border</mat-icon>
         </div>

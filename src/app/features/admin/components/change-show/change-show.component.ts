@@ -1,19 +1,22 @@
-import { Component, OnInit, Input, ViewChild, TemplateRef } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, TemplateRef, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { theaterList } from 'src/app/reducers';
 import { AdminService } from '../../services/admin.service';
 import { MatDialog } from '@angular/material';
+import { map } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-change-show',
   templateUrl: './change-show.component.html',
-  styleUrls: ['./change-show.component.scss']
+  styleUrls: ['./change-show.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChangeShowComponent implements OnInit {
   @Input() theaterList;
   movieInput: FormControl;
   selectTheater: FormControl;
-  movieResult;
+  movieResult: Observable<Object>;
   selectedTheater;
   nowShowing = [];
   nowPlaying = [];
@@ -27,9 +30,11 @@ export class ChangeShowComponent implements OnInit {
   ngOnInit() {
     this.movieInput.valueChanges.subscribe(value => {
       if (value) {
-        this.adminService.searchMovie(value).subscribe(movies => {
+        this.movieResult = this.adminService.searchMovie(value).pipe(map(movies => movies['results']));
+
+        /* .subscribe(movies => {
           this.movieResult = movies['results'];
-        });
+        }); */
       }
     });
     this.selectTheater.valueChanges.subscribe(value => {
@@ -53,7 +58,7 @@ export class ChangeShowComponent implements OnInit {
     this.movieInput.reset();
     this.selectTheater.reset();
     this.matDialog.closeAll();
-    this.movieResult = [];
+    this.movieResult = of([]);
   }
 
   track(_index, item) {

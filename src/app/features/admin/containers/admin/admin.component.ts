@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { AdminService } from '../../services/admin.service';
 import { Store, State } from '@ngrx/store';
 import * as MovieState from './../../../../reducers/index';
@@ -6,7 +6,8 @@ import * as MovieState from './../../../../reducers/index';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.scss']
+  styleUrls: ['./admin.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AdminComponent implements OnInit {
   theaterList;

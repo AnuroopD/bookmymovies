@@ -12,7 +12,7 @@
         <ng-template matTabContent class="movieList">
 
           <div class="cards-container" fxLayout="row wrap" fxLayoutAlign="space-evenly center" fxLayoutGap="2%">
-            <ng-container *ngFor="let movie of upcomingList ; trackBy: track">
+            <ng-container *ngFor="let movie of upcomingList; trackBy: track">
               <app-movie-card class=" seach-movies-cards" [movie]="movie" [theaterList]="theaterList"
                 [category]="'nowPlaying'">
               </app-movie-card>
@@ -25,7 +25,7 @@
         <ng-template matTabContent>
 
           <div class="cards-container" fxLayout="row wrap" fxLayoutAlign="space-evenly center">
-            <ng-container *ngFor="let movie of moviesList ; trackBy: track">
+            <ng-container *ngFor="let movie of moviesList; trackBy: track">
               <app-movie-card class="seach-movies-cards" [movie]="movie" [theaterList]="theaterList"
                 [category]="'upComing'"></app-movie-card>
             </ng-container>

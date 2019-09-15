@@ -27,7 +27,7 @@
         </div>
         <br>
         <!-- Generate the seating grid -->
-        <div *ngFor="let row of rows ; trackBy: track" class="grid__DIV">
+        <div *ngFor="let row of rows; trackBy: track" class="grid__DIV">
           <span class="seat" *ngFor="let col of cols;index as i; trackBy: track" (click)="seatClicked(row + col)"
             [ngSwitch]="getStatus(row + col)">
             <span class="rowSpan">{{row+col}}</span>
