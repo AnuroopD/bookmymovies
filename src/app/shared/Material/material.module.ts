@@ -33,7 +33,6 @@ const materialModules = [
   MatDatepickerModule,
   MatNativeDateModule,
   MatDialogModule,
-  MatSnackBarModule,
   ScrollingModule,
   MatSnackBarModule,
   MatTableModule,

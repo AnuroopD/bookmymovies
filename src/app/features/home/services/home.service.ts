@@ -63,18 +63,15 @@ export class HomeService {
   }
 
   getGenres() {
-    console.log('geners', this.genres);
     return this.genres;
   }
 
   fetchGenres() {
     this.http.get(this.genresUrl).subscribe(res => {
       this.genres = res['genres'];
-      console.log(res, this.genres);
     });
   }
   getCastAndCrew(movies: Movie[]) {
-    console.log('movies home ==>', movies);
     movies.forEach(element => {
       const getCreditsUrl = BASE_URL.TMDB_API + TMDB_URLS.GET_CREDITS + element.id + '/credits?' + environment.API_KEY;
 
@@ -99,16 +96,13 @@ export class HomeService {
     let objectRef, currentUserData;
     this.http.get(environment.JSONSERVER + JSON_SERVER_URLS.USER_DETAILS).subscribe(res => {
       objectRef = res;
-      console.log(newPreference, currentUserId, res['users']);
       res['users'].forEach(user => {
         if (user.uid === currentUserId) {
           user.preferences = newPreference;
           currentUserData = user;
-          console.log(user);
         }
       });
       this.http.put(environment.JSONSERVER + JSON_SERVER_URLS.USER_DETAILS, objectRef).subscribe(resp => {
-        console.log(resp);
         this.store.dispatch(new SetUser(currentUserData));
       });
     });

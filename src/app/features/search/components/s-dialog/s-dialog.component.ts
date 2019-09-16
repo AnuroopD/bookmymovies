@@ -46,6 +46,7 @@ export class SDialogComponent implements OnInit, OnDestroy {
   voteCountFilter: FormControl;
 
   searchField = new FormControl();
+  sortedValue = [];
 
   constructor(
     private store: Store<MovieState.State>,
@@ -101,6 +102,7 @@ export class SDialogComponent implements OnInit, OnDestroy {
   }
   voteCount() {
     this.voteCounts = this.voteCountList.map(item => item.vote_count);
+    this.sortedValue = this.voteCounts.sort((a, b) => 0 - (a > b ? 1 : -1));
     console.log(this.voteCounts);
   }
 

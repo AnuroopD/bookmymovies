@@ -26,7 +26,7 @@
 
     <mat-form-field>
       <mat-select placeholder="Vote Count" [formControl]='voteCountFilter'>
-        <mat-option *ngFor="let vote of voteCounts" [value]="vote">{{vote}}</mat-option>
+        <mat-option *ngFor="let vote of sortedValue" [value]="vote">{{vote}}</mat-option>
       </mat-select>
     </mat-form-field>
 

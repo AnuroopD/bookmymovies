@@ -1,28 +1,18 @@
 import { Injectable } from '@angular/core';
-// import { ErrorDialogService } from '../error-dialog/errordialog.service';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
 
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { SnackBarService } from '../Snack-Bar/snack-bar.service';
+import { LogService } from '../Logger/log.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpInterceptorService implements HttpInterceptor {
-  constructor(private snackbar: SnackBarService) {}
+  constructor(private snackbar: SnackBarService, private logger: LogService) {}
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    // console.log('Intercept Request: ', request);
-    //  const token: string = sessionStorage.getItem('token');
-
-    // if (userInfo) {
-    //   userId = userInfo.providerContact.id;
-    // }
-    // request = request.clone({ headers: request.headers.set('Authorization', 'Bearer') });
     request = request.clone({ headers: request.headers.set('Content-Type', 'application/json') });
-    // request = request.clone({ headers: request.headers.set('Accept', 'application/json') });
-    // request = request.clone({ headers: request.headers.set('Access-Control-Allow-Origin', '*') });
-    // request = request.clone({ headers: request.headers.set('userId', userId) });
 
     return next.handle(request).pipe(
       map((event: HttpEvent<any>) => {
@@ -31,17 +21,23 @@ export class HttpInterceptorService implements HttpInterceptor {
         return event;
       }),
       catchError((error: any) => {
+        const storageVal = {
+          warning: this.logger.warn(error),
+          information: this.logger.info(error),
+          ErrorInfo: this.logger.error(error),
+          fatal: this.logger.fatal(error),
+          logger: this.logger.log(error)
+        };
+        sessionStorage.setItem('Error Logger', JSON.stringify(storageVal));
         let errorMessage = '';
         if (error.error instanceof ErrorEvent) {
           // client-side error
           errorMessage = `Error: ${error.error.message}`;
           this.snackbar.error(errorMessage);
         } else {
-          // server-side error
           errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
           this.snackbar.error(errorMessage);
         }
-        // window.alert(errorMessage);
 
         return throwError(errorMessage);
       })

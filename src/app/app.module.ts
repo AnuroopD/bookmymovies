@@ -18,6 +18,8 @@ import { SharedModule } from './shared/shared.module';
 import { ProfileComponent } from './features/profile/profile.component';
 import { AdminModule } from './features/admin/admin.module';
 import { HttpInterceptorService } from './core/interceptors/http-interceptors.service';
+import { LogService } from './core/Logger/log.service';
+import { LoggerComponent } from './core/Logger/logger/logger.component';
 
 @NgModule({
   declarations: [AppComponent, ProfileComponent],
@@ -47,7 +49,8 @@ import { HttpInterceptorService } from './core/interceptors/http-interceptors.se
       provide: HTTP_INTERCEPTORS,
       useClass: HttpInterceptorService,
       multi: true
-    }
+    },
+    LogService
   ],
   bootstrap: [AppComponent]
 })
