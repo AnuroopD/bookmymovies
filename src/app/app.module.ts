@@ -1,7 +1,7 @@
 import { MaterialModule } from './shared/Material/material.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +17,7 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { ProfileComponent } from './features/profile/profile.component';
 import { AdminModule } from './features/admin/admin.module';
+import { HttpInterceptorService } from './core/interceptors/http-interceptors.service';
 
 @NgModule({
   declarations: [AppComponent, ProfileComponent],
@@ -41,7 +42,13 @@ import { AdminModule } from './features/admin/admin.module';
     AdminModule,
     SharedModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

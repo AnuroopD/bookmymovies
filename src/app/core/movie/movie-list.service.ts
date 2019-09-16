@@ -776,4 +776,15 @@ export class MovieListService {
     }
     return languageList;
   }
+
+  getVoteCount(movieList = [], res) {
+    const result = movieList.map(item => {
+      const filteredValue = item.value.filter(s => s.vote_count > res);
+      return {
+        ...item,
+        value: filteredValue
+      };
+    });
+    return result;
+  }
 }

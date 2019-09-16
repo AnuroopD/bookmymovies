@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, AfterContentChecked, DoCheck } from '@angular/core';
+import { Component, OnInit, Input, AfterContentChecked, DoCheck, OnChanges } from '@angular/core';
 import { MatDialog } from '@angular/material';
 
 // import { MoviePipePipe } from './../../pipes/movie-pipe.pipe';
@@ -13,11 +13,13 @@ import { Store } from '@ngrx/store';
   templateUrl: './s-dialog-cards.component.html',
   styleUrls: ['./s-dialog-cards.component.scss']
 })
-export class SDialogCardsComponent implements AfterContentChecked, DoCheck, OnInit {
+export class SDialogCardsComponent implements AfterContentChecked, DoCheck, OnInit, OnChanges {
   @Input() movieList; // movie seperated by language
   @Input() movieFilter; // genre
   @Input() languageList; // list of languages
   @Input() selectedLanguage; // user language selection
+  @Input() lessPopular;
+  @Input() morePopular;
   userPreference: any = [];
 
   // movieList DS
@@ -37,6 +39,10 @@ export class SDialogCardsComponent implements AfterContentChecked, DoCheck, OnIn
   ngAfterContentChecked() {}
 
   ngDoCheck(): void {}
+  ngOnChanges(): void {
+    console.log('more', this.morePopular);
+    console.log('less', this.lessPopular);
+  }
 
   track(_index, item) {
     return item;
