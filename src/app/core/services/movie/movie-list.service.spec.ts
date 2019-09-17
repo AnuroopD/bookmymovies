@@ -1,7 +1,6 @@
 import { TestBed, async } from '@angular/core/testing';
 
 import { MovieListService } from './movie-list.service';
-import { AdminguardService } from '../auth/service/adminguard.service';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -86,5 +85,19 @@ describe('MovieListService', () => {
     spyOn(service, 'getLanguageList').and.callThrough();
     service.getLanguageList(movieList);
     expect(service.getLanguageList).toHaveBeenCalled();
+  });
+
+  it('can call getVoteCount method', () => {
+    const movieList = [
+      { original_language: { name: 'Anv' }, language: 'Hindi', name: 'K3g' },
+      { original_language: 'Eng', language: 'Hindi', name: 'K2g' },
+      { original_language: 'Eng', language: 'Hindi', name: 'K1g' }
+    ];
+
+    const res = [];
+    expect(service.getVoteCount).toBeDefined();
+    spyOn(service, 'getVoteCount').and.callThrough();
+    service.getVoteCount(movieList, res);
+    expect(service.getVoteCount).toHaveBeenCalled();
   });
 });

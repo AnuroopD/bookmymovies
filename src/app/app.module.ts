@@ -18,8 +18,7 @@ import { SharedModule } from './shared/shared.module';
 import { ProfileComponent } from './features/profile/profile.component';
 import { AdminModule } from './features/admin/admin.module';
 import { HttpInterceptorService } from './core/interceptors/http-interceptors.service';
-import { LogService } from './core/Logger/log.service';
-import { LoggerComponent } from './core/Logger/logger/logger.component';
+import { LogService } from './core/services/Logger/log.service';
 
 @NgModule({
   declarations: [AppComponent, ProfileComponent],

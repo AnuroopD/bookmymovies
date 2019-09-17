@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as MovieState from '../../../../reducers/index';
-import { Router, ActivatedRoute } from '@angular/router';
+import {  ActivatedRoute } from '@angular/router';
 import { Movie } from '../../../home/models/movie.model';
 import { MovieService } from '../../services/movie.service';
 
@@ -56,8 +56,7 @@ export class MovieComponent implements OnInit, AfterContentInit {
         this.movieData.poster_path = value.poster_path;
       });
       this.movieService.getCastAndCrew(this.id).subscribe(res => {
-        console.log(res);
-        this.movieData.casts = res['cast'].splice(0, 5);
+         this.movieData.casts = res['cast'].splice(0, 5);
         this.movieData.crews = res['crew'].splice(0, 5);
       });
     } else {

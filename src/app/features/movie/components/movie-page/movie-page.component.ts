@@ -1,12 +1,9 @@
 import { Subscription } from 'rxjs';
 import { Component, OnInit, Inject, Input, OnChanges, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
-import { StoreFeatureModule } from '@ngrx/store';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog } from '@angular/material';
 
 import { MovieService } from '../../services/movie.service';
 import { FormControl } from '@angular/forms';
-import { Store, State } from '@ngrx/store';
-import * as MovieState from '../../../../reducers/index';
 import { TMDB_URLS } from '../../../../shared/config';
 import { PreBookingComponent } from '../../../../shared/components/modals/pre-booking/pre-booking.component';
 import { SeatReservationModalComponent } from 'src/app/shared/components/modals/seat-reservation-modal/seat-reservation-modal.component';

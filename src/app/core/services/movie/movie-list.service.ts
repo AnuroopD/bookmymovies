@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -736,8 +734,6 @@ export class MovieListService {
       nativeName: 'Saɯ cueŋƅ, Saw cuengh'
     }
   };
-
-  constructor(private httpClient: HttpClient) {}
 
   getLanguageList(movieList) {
     const languageList = [];

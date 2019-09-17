@@ -3,9 +3,9 @@ import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/c
 
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
-import { SnackBarService } from '../Snack-Bar/snack-bar.service';
-import { LogService } from '../Logger/log.service';
 
+import { LogService } from '../services/Logger/log.service';
+import { SnackBarService } from '../services/Snack-Bar/snack-bar.service';
 @Injectable({
   providedIn: 'root'
 })

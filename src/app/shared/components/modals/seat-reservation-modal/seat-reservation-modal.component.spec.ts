@@ -96,7 +96,6 @@ describe('SeatReservationModalComponent', () => {
     component.getStatus(seatPos);
     expect(component.getStatus).toHaveBeenCalled();
     const result = component.getStatus(seatPos);
-    t;
     expect(result).toEqual('reserved');
     expect(result).not.toEqual('selected');
   });
@@ -107,5 +106,14 @@ describe('SeatReservationModalComponent', () => {
     spyOn(component, 'seatClicked').and.callThrough();
     component.seatClicked(seatPos);
     expect(component.seatClicked).toHaveBeenCalled();
+  });
+
+  it('can call track method', () => {
+    const index = 1;
+    const item = [];
+    expect(component.track).toBeDefined();
+    spyOn(component, 'track').and.callThrough();
+    component.track(index, item);
+    expect(component.track).toHaveBeenCalled();
   });
 });

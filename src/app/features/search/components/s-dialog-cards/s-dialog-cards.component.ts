@@ -1,19 +1,15 @@
 import { Component, OnInit, Input, AfterContentChecked, DoCheck, OnChanges } from '@angular/core';
 import { MatDialog } from '@angular/material';
 
-// import { MoviePipePipe } from './../../pipes/movie-pipe.pipe';
-
 import * as UserState from '../../../../reducers/index';
 import { Store } from '@ngrx/store';
-
-// import { MatCardModule } from '@angular/material'
 
 @Component({
   selector: 'app-s-dialog-cards',
   templateUrl: './s-dialog-cards.component.html',
   styleUrls: ['./s-dialog-cards.component.scss']
 })
-export class SDialogCardsComponent implements AfterContentChecked, DoCheck, OnInit, OnChanges {
+export class SDialogCardsComponent implements AfterContentChecked, DoCheck, OnInit {
   @Input() movieList; // movie seperated by language
   @Input() movieFilter; // genre
   @Input() languageList; // list of languages
@@ -21,11 +17,6 @@ export class SDialogCardsComponent implements AfterContentChecked, DoCheck, OnIn
   @Input() lessPopular;
   @Input() morePopular;
   userPreference: any = [];
-
-  // movieList DS
-  // key: language.name,
-  // code: language.key,
-  // value: []
 
   constructor(private userStore: Store<UserState.State>) {}
 
@@ -39,10 +30,6 @@ export class SDialogCardsComponent implements AfterContentChecked, DoCheck, OnIn
   ngAfterContentChecked() {}
 
   ngDoCheck(): void {}
-  ngOnChanges(): void {
-    console.log('more', this.morePopular);
-    console.log('less', this.lessPopular);
-  }
 
   track(_index, item) {
     return item;

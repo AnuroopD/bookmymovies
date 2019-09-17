@@ -39,7 +39,7 @@ export class LogService {
     return this.writeToLog(msg, LogLevel.All, optionalParams);
   }
 
-  private writeToLog(msg, level: LogLevel, params: any[]) {
+  writeToLog(msg, level: LogLevel, params: any[]) {
     if (this.shouldLog(level)) {
       let value;
 
@@ -58,7 +58,7 @@ export class LogService {
     }
   }
 
-  private shouldLog(level: LogLevel): boolean {
+  shouldLog(level: LogLevel): boolean {
     let ret: boolean = false;
     if ((level >= this.level && level !== LogLevel.Off) || this.level === LogLevel.All) {
       ret = true;
@@ -66,7 +66,7 @@ export class LogService {
     return ret;
   }
 
-  private formatParams(params: any[]): string {
+  formatParams(params: any[]): string {
     let ret: string = params.join(',');
     // Is there at least one object in the array?
     if (params.some(p => typeof p == 'object')) {

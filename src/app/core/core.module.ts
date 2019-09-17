@@ -8,7 +8,6 @@ import { AuthService } from 'angular-6-social-login';
 import { SocialLoginModule, AuthServiceConfig, GoogleLoginProvider } from 'angular-6-social-login';
 import { SignInService } from '../core/shell/header/service/signin.service';
 import { SharedModule } from '../shared/shared.module';
-import { LoggerComponent } from './Logger/logger/logger.component';
 
 export function getAuthServiceConfigs() {
   const config = new AuthServiceConfig([
@@ -21,7 +20,7 @@ export function getAuthServiceConfigs() {
 }
 
 @NgModule({
-  declarations: [ShellComponent, HeaderComponent, LoggerComponent],
+  declarations: [ShellComponent, HeaderComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [CommonModule, SharedModule, AppRoutingModule],
   providers: [

@@ -130,4 +130,13 @@ describe('ProfileComponent', () => {
     component.sucess();
     expect(component.sucess).toHaveBeenCalled();
   });
+
+  it('can call track method', () => {
+    const index = 1;
+    const item = [];
+    expect(component.track).toBeDefined();
+    spyOn(component, 'track').and.callThrough();
+    component.track(index, item);
+    expect(component.track).toHaveBeenCalled();
+  });
 });

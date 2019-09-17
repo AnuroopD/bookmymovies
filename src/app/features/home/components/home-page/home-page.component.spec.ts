@@ -6,6 +6,7 @@ import { MatMenuModule, MatAutocompleteModule } from '@angular/material';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 describe('HomePageComponent', () => {
   let component: HomePageComponent;
@@ -55,7 +56,7 @@ describe('HomePageComponent', () => {
   };
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [MatMenuModule, MatAutocompleteModule],
+      imports: [MatMenuModule, MatAutocompleteModule, ScrollingModule],
       schemas: [NO_ERRORS_SCHEMA],
       declarations: [HomePageComponent],
       providers: [
@@ -112,5 +113,13 @@ describe('HomePageComponent', () => {
     spyOn(component, 'getGenre').and.callThrough();
     component.getGenre(g);
     expect(component.getGenre).toHaveBeenCalled();
+  });
+  it('can call track method', () => {
+    const index = 1;
+    const item = [];
+    expect(component.track).toBeDefined();
+    spyOn(component, 'track').and.callThrough();
+    component.track(index, item);
+    expect(component.track).toHaveBeenCalled();
   });
 });

@@ -1,10 +1,10 @@
 import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
-import { Store, State } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import * as MovieState from '../../../../reducers/index';
 import * as UserState from '../../../../reducers/index';
 
 import { HomeService } from '../../services/home.service';
-import { Subscribable, Subscription, Observable } from 'rxjs';
+import {  Subscription, Observable } from 'rxjs';
 import { Movie } from 'src/app/features/search/models/search.model';
 @Component({
   selector: 'app-home',
@@ -34,10 +34,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       .select(MovieState.nowPlayingMoviesSelector)
       .subscribe(result => (this.nowPlayingMoviesList = result));
     this.upcomingMoviesList = this.store.select(MovieState.upcomingMovieSelector);
-
-    /* .subscribe(result => {
-      this.upcomingMoviesList = result;
-    }); */
+ 
     this.theatreSubs = this.store.select(MovieState.theaterList).subscribe(result => {
       this.theaterList = Object.values(result);
     });

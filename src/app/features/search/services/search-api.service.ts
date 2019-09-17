@@ -1,11 +1,9 @@
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { timer, interval } from 'rxjs';
-// import 'rxjs/add/operator/map';
+ // import 'rxjs/add/operator/map';
 
-import { Movie } from '../../movie/models/movie.model';
-import { environment } from '../../../../environments/environment';
+ import { environment } from '../../../../environments/environment';
 import { BASE_URL, TMDB_URLS } from 'src/app/shared/config';
 
 @Injectable({

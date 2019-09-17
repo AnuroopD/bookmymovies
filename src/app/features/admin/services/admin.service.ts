@@ -48,9 +48,7 @@ export class AdminService {
             theater.movies = nowPlaying;
           }
         });
-        this.http.put(THEATERS_URL, newObject).subscribe(xyz => {
-          console.log('Sucess', xyz);
-        });
+        this.http.put(THEATERS_URL, newObject).subscribe(xyz => {});
       });
     }
   }

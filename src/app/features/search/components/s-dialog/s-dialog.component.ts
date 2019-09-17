@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Store, State } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import * as MovieState from '../../../../reducers/index';
 import { FormControl } from '@angular/forms';
-import { Observable } from 'rxjs';
 import { debounceTime, map } from 'rxjs/operators';
 
 import {} from '../../../home/store/actions/home.action';
@@ -11,7 +10,7 @@ import { SegregateMovieService } from '../../services/segregate-movie.service';
 import { SearchApiService } from '../../services/search-api.service';
 import { OnDestroy } from '@angular/core';
 import { HostBinding } from '@angular/core';
-import { MovieListService } from 'src/app/core/movie/movie-list.service';
+import { MovieListService } from 'src/app/core/services/movie/movie-list.service';
 
 @Component({
   selector: 'app-s-dialog',
@@ -66,7 +65,6 @@ export class SDialogComponent implements OnInit, OnDestroy {
       this.movieObjArray = this.movieListService.getLanguageList(this.moviesList);
       this.originalMovieObjArray = this.movieObjArray;
       // get movies with languages
-      console.log(this.movieObjArray);
     });
     this.voteCount();
 
@@ -103,7 +101,6 @@ export class SDialogComponent implements OnInit, OnDestroy {
   voteCount() {
     this.voteCounts = this.voteCountList.map(item => item.vote_count);
     this.sortedValue = this.voteCounts.sort((a, b) => 0 - (a > b ? 1 : -1));
-    console.log(this.voteCounts);
   }
 
   ngOnDestroy(): void {

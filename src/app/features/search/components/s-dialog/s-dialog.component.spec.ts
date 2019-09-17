@@ -83,4 +83,6 @@ describe('SDialogComponent', () => {
     component.changeGenere();
     expect(component.changeGenere).toHaveBeenCalled();
   });
+
+
 });

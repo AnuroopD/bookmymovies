@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, ViewChild, TemplateRef, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { theaterList } from 'src/app/reducers';
 import { AdminService } from '../../services/admin.service';
 import { MatDialog } from '@angular/material';
 import { map } from 'rxjs/operators';
@@ -31,10 +30,6 @@ export class ChangeShowComponent implements OnInit {
     this.movieInput.valueChanges.subscribe(value => {
       if (value) {
         this.movieResult = this.adminService.searchMovie(value).pipe(map(movies => movies['results']));
-
-        /* .subscribe(movies => {
-          this.movieResult = movies['results'];
-        }); */
       }
     });
     this.selectTheater.valueChanges.subscribe(value => {

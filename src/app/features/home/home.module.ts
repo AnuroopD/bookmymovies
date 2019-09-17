@@ -1,4 +1,3 @@
-import { MaterialModule } from './../../shared/Material/material.module';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomePageComponent } from './components/home-page/home-page.component';

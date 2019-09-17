@@ -1,6 +1,6 @@
 import { Component, OnInit, EventEmitter, Output, Input, Inject } from '@angular/core';
 
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog } from '@angular/material';
 import { ConfirmationModalComponent } from '../../components/modals/confirmation-modal/confirmation-modal.component';
 import { ActivatedRoute } from '@angular/router';
 @Component({
