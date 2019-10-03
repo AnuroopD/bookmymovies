@@ -8,7 +8,7 @@ import { HomeService } from 'src/app/features/home/services/home.service';
   styleUrls: ['./movie-dropdowns.component.scss']
 })
 export class MovieDropdownsComponent implements OnInit {
-  genresList: any = [];
+  genresList = [];
   @Input() layout;
   @Input() languageList;
   @Output() languageChange$: EventEmitter<any>;

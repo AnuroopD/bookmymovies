@@ -9,10 +9,11 @@ import { SnackBarService } from '../services/Snack-Bar/snack-bar.service';
 @Injectable({
   providedIn: 'root'
 })
+/* jkkjklj */
 export class HttpInterceptorService implements HttpInterceptor {
   constructor(private snackbar: SnackBarService, private logger: LogService) {}
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    request = request.clone({ headers: request.headers.set('Content-Type', 'application/json') });
+    // request = request.clone({ headers: request.headers.set('Content-Type', 'application/json') });
 
     return next.handle(request).pipe(
       map((event: HttpEvent<any>) => {

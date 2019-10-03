@@ -42,7 +42,6 @@ export class HomeService {
         })
       )
       .subscribe((res: Movie[]) => {
-        console.log(res);
         this.store.dispatch(new SetNowPlayingMovies(res));
       });
   }

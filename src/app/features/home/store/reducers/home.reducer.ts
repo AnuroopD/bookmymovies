@@ -16,7 +16,7 @@ export const initialMovieState: MoviesState = {
 
 export function moviesReducer(state = initialMovieState, action: MovieActionTypes) {
     switch (action.type) {
-        case EMovieActionTypes.SET_NOW_PLAYING_MOVIES: { 
+        case EMovieActionTypes.SET_NOW_PLAYING_MOVIES: {
             const newNowPlayingMovies: Movie[] = [...state.nowPlayingMovies];
             newNowPlayingMovies.push(...action.payload);
             return {
@@ -24,7 +24,7 @@ export function moviesReducer(state = initialMovieState, action: MovieActionType
                 nowPlayingMovies: newNowPlayingMovies
             };
         }
-        case EMovieActionTypes.SET_UPCOMING_MOVIES: { 
+        case EMovieActionTypes.SET_UPCOMING_MOVIES: {
             const newUpcomingMovies: Movie[] = [...state.upcomingMovies];
             newUpcomingMovies.push(...action.payload);
             return {

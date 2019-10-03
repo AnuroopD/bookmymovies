@@ -59,7 +59,7 @@ export class LogService {
   }
 
   shouldLog(level: LogLevel): boolean {
-    let ret: boolean = false;
+    let ret = false;
     if ((level >= this.level && level !== LogLevel.Off) || this.level === LogLevel.All) {
       ret = true;
     }
@@ -69,10 +69,10 @@ export class LogService {
   formatParams(params: any[]): string {
     let ret: string = params.join(',');
     // Is there at least one object in the array?
-    if (params.some(p => typeof p == 'object')) {
+    if (params.some(p => typeof p === 'object')) {
       ret = '';
       // Build comma-delimited string
-      for (let item of params) {
+      for (const item of params) {
         ret += JSON.stringify(item) + ',';
       }
     }

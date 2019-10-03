@@ -20,7 +20,6 @@ export class AuthGuard implements CanActivate, CanLoad, OnDestroy {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     this.userDetailsSubs = this.store.select(UserState.userSelector).subscribe(result => {
       this.userDetails = result;
-      console.log('userDetails auth check', this.userDetails);
     });
     const authValid = this.userDetails;
     if (authValid && authValid.id !== '') {
@@ -34,7 +33,6 @@ export class AuthGuard implements CanActivate, CanLoad, OnDestroy {
   canLoad(route: Route): Observable<boolean> | boolean {
     this.userDetailsSubs = this.store.select(UserState.userSelector).subscribe(result => {
       this.userDetails = result;
-      console.log('userDetails auth check', this.userDetails);
     });
     const authValid = this.userDetails;
     if (authValid) {

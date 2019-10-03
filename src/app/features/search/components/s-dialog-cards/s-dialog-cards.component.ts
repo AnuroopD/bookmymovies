@@ -23,7 +23,6 @@ export class SDialogCardsComponent implements AfterContentChecked, DoCheck, OnIn
   ngOnInit(): void {
     this.userStore.select(UserState.userSelector).subscribe(result => {
       this.userPreference = result.preference;
-      // console.log('uspref', this.userPreference);
     });
   }
 

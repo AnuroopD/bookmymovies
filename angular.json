@@ -26,6 +26,7 @@
               "src/favicon.ico",
               "src/assets",
               "src/manifest.json",
+              "src/manifest.json",
               "src/manifest.json"
             ],
             "styles": [
@@ -96,6 +97,7 @@
               "src/favicon.ico",
               "src/assets",
               "src/manifest.json",
+              "src/manifest.json",
               "src/manifest.json"
             ]
           }
@@ -110,6 +112,38 @@
             "exclude": [
               "**/node_modules/**"
             ]
+          }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/book-my-movie-server",
+            "main": "src/main.server.ts",
+            "tsConfig": "src/tsconfig.server.json"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "app-shell": {
+          "builder": "@angular-devkit/build-angular:app-shell",
+          "options": {
+            "browserTarget": "book-my-movie:build",
+            "serverTarget": "book-my-movie:server",
+            "route": "app-shell-path"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "book-my-movie:build:production",
+              "serverTarget": "book-my-movie:server:production"
+            }
           }
         }
       }
@@ -134,7 +168,6 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": "e2e/tsconfig.e2e.json",
             "exclude": [
               "**/node_modules/**"
             ]

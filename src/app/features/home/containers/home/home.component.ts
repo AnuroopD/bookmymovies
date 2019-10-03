@@ -4,8 +4,9 @@ import * as MovieState from '../../../../reducers/index';
 import * as UserState from '../../../../reducers/index';
 
 import { HomeService } from '../../services/home.service';
-import {  Subscription, Observable } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 import { Movie } from 'src/app/features/search/models/search.model';
+import { PreferenceInterface } from 'src/app/features/interfaces/preference';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -13,11 +14,11 @@ import { Movie } from 'src/app/features/search/models/search.model';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  nowPlayingMoviesList: any = [];
+  nowPlayingMoviesList = [];
   upcomingMoviesList: Observable<Movie[]>;
-  genresList: any = [];
-  theaterList: any = [];
-  userPreference: any = [];
+  genresList = [];
+  theaterList = [];
+  userPreference: PreferenceInterface;
   nowPlayingMovieSubs: Subscription;
   upcomingSubs: Subscription;
   theatreSubs: Subscription;
@@ -34,12 +35,12 @@ export class HomeComponent implements OnInit, OnDestroy {
       .select(MovieState.nowPlayingMoviesSelector)
       .subscribe(result => (this.nowPlayingMoviesList = result));
     this.upcomingMoviesList = this.store.select(MovieState.upcomingMovieSelector);
- 
+
     this.theatreSubs = this.store.select(MovieState.theaterList).subscribe(result => {
       this.theaterList = Object.values(result);
     });
     this.userPrefSubs = this.userStore.select(UserState.userSelector).subscribe(result => {
-      this.userPreference = result.preference;
+      this.userPreference.preference = result.preference;
     });
     this.genresList = this.homeService.getGenres();
   }

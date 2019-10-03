@@ -14,7 +14,6 @@ export class AdminService {
     let newTheaters, newObject;
     this.http.get(THEATERS_URL).subscribe(
       value => {
-        console.log(value);
         newObject = value;
         newTheaters = newObject['theaters'];
         newTheaters.push(data);
@@ -41,7 +40,6 @@ export class AdminService {
     let newObject;
     if (nowPlaying.length > 0) {
       this.http.get(THEATERS_URL).subscribe(value => {
-        console.log(value);
         newObject = value;
         newObject['theaters'].forEach(theater => {
           if (theater.id === theaterId) {

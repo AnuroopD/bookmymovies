@@ -19,12 +19,13 @@ import { ProfileComponent } from './features/profile/profile.component';
 import { AdminModule } from './features/admin/admin.module';
 import { HttpInterceptorService } from './core/interceptors/http-interceptors.service';
 import { LogService } from './core/services/Logger/log.service';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [AppComponent, ProfileComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
@@ -35,13 +36,13 @@ import { LogService } from './core/services/Logger/log.service';
       maxAge: 25,
       logOnly: environment.production
     }),
-    ServiceWorkerModule.register('/ngsw-worker.js', {
-      enabled: environment.production
-    }),
+
     MaterialModule,
     CoreModule,
     AdminModule,
-    SharedModule
+    SharedModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    RouterModule
   ],
   providers: [
     {

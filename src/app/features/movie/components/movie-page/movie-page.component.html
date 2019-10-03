@@ -38,8 +38,7 @@
             <div fxLayout="row wrap" *ngIf="theaterList && theaterList.length !== 0" fxLayoutAlign="center center"
               fxLayoutGap="3%">
 
-              <button mat-raised-button color="primary" (click)="checKToDialog()" style="color: white"
-                [disabled]="isInvalid()">
+              <button mat-raised-button color="primary" (click)="checKToDialog()" [disabled]="isInvalid()">
                 {{ category === 'nowPlaying' ? 'BOOK' : 'PRE-BOOK' }}</button>
             </div>
           </div>
